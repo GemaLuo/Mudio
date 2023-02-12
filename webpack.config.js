@@ -1,54 +1,55 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require('webpack');
 
 module.exports = {
-  mode: 'development',
+  mode: "development",
   entry: {
-    index: './src/index.js',
+    index: "./src/index.js",
   },
-  devtool: 'inline-source-map',
+  resolve: { extensions: ["*", ".js", ".jsx"] },
   devServer: {
-    static: './dist',
+    static: "./dist",
+    historyApiFallback: true,
   },
   plugins: [
+    new webpack.ProgressPlugin(),
     new HtmlWebpackPlugin({
-      title: 'Development',
-      template: './dist/index.html'
+      template: "./src/index.html",
     }),
   ],
   output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, 'dist'),
+    filename: "main.js",
+    path: path.resolve(__dirname, "dist"),
+    publicPath: '/'
   },
   module: {
     rules: [
       {
         test: /\.css$/i,
         use: [
-          'style-loader', 
+          "style-loader",
           {
-            loader: 'css-loader',
-            options: {importLoaders: 1 }
+            loader: "css-loader",
+            options: { importLoaders: 1 },
           },
-          'postcss-loader'
+          "postcss-loader",
         ],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource',
+        type: "asset/resource",
       },
       {
-        test: /\.m?js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: [
-              ['@babel/preset-env', { targets: "defaults" }]
-            ]
-          }
-        }
-      }
+            presets: ["@babel/preset-env", "@babel/preset-react"],
+          },
+        },
+      },
     ],
   },
 };
