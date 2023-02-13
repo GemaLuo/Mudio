@@ -1,5 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap');
+
 @tailwind base;
-
 @tailwind components;
-
 @tailwind utilities;
+
+@layer base {
+  html {
+    background-color: #f1f1f1;
+    font-family: "Poppins", sans-serif;
+    font-family: 'Noto Sans TC', sans-serif;
+  }
+  .container {
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .scrollable {
+    scroll-behavior: smooth;
+  }
+}

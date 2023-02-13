@@ -14,7 +14,7 @@ const Signup = () => {
     setError("");
     try {
       await createUser(email, password);
-      navigate("/account");
+      navigate("/home");
     } catch (e) {
       setError(e.message);
       console.log(e.message);
@@ -56,7 +56,7 @@ const Signup = () => {
             type="password"
           />
         </div>
-        <button className="border border-blue-500 bg-blue-500 hover:bg-blue-700 w-full p-4 my-2 text-white font-bold rounded focus:outline-none focus:shadow-outline">
+        <button className="border border-blue-500 bg-blue-500 hover:bg-blue-700 w-full p-3 mb-2 mt-3 text-white font-bold rounded focus:outline-none focus:shadow-outline">
           註冊
         </button>
       </form>

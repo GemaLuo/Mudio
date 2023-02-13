@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "music-develop",
+    "Mudio": "mudio-enjoy-music"
+  },
+  "targets": {},
+  "etags": {}
+}

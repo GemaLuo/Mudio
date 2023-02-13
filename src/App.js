@@ -5,11 +5,12 @@ import ProtectedRoute from "./components/ProtectedRoute.js";
 import Signin from "./components/Signin";
 import Signup from "./components/Signup.jsx";
 import { AuthContextProvider } from "./context/AuthContext.js";
+import Home from "./components/pages/Home.js";
 
 const App = () => {
   return (
     <div>
-      <h1 className="text-center text-3xl font-bold mt-5">Music Player</h1>
+      {/* <h1 className="text-center text-3xl font-bold mt-5">nav bar</h1> */}
       <AuthContextProvider>
         <Routes>
           <Route path="/" element={<Signin />} />
@@ -22,6 +23,15 @@ const App = () => {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/home"
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
+          />
+          
         </Routes>
       </AuthContextProvider>
     </div>

@@ -6,12 +6,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBxoehTGQeoc6fyPFCQRIw5tIvFerhWz7M",
-  authDomain: "music-develop.firebaseapp.com",
-  projectId: "music-develop",
-  storageBucket: "music-develop.appspot.com",
-  messagingSenderId: "78212997736",
-  appId: "1:78212997736:web:ba8069c0e42edcd79f51dd"
+  apiKey: "AIzaSyBLvabrHLUtJ_B1mi8--5SkKKrD9E5kbXE",
+  authDomain: "mudio-enjoy-music.firebaseapp.com",
+  projectId: "mudio-enjoy-music",
+  storageBucket: "mudio-enjoy-music.appspot.com",
+  messagingSenderId: "1021711652283",
+  appId: "1:1021711652283:web:27ad8d914016f5718a209e"
 };
 
 // Initialize Firebase
