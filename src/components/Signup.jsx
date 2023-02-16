@@ -14,7 +14,7 @@ const Signup = () => {
     setError("");
     try {
       await createUser(email, password);
-      navigate("/home");
+      navigate("/");
     } catch (e) {
       setError(e.message);
       console.log(e.message);
@@ -27,7 +27,7 @@ const Signup = () => {
         <h1 className="text-2xl font-bold py-1">註冊</h1>
         <p className="py-2">
           已經有帳號？
-          <Link to="/" className="text-sky-500 underline">
+          <Link to="/signin" className="text-sky-500 underline">
             點此登入
           </Link>
         </p>

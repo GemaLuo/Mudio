@@ -2,13 +2,14 @@ import React, { useEffect } from "react";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
 import { useState } from "react";
+import { Outlet } from "react-router-dom";
 
 function getWindowWidth() {
   const innerWidth = window.innerWidth;
   return innerWidth;
 }
 
-const Home = () => {
+const HomePage = () => {
   const [width, setWidth] = useState(getWindowWidth());
   const [openSidebar, setOpenSidebar] = useState(true);
 
@@ -29,7 +30,7 @@ const Home = () => {
     } else {
       setOpenSidebar(true);
     }
-  },[width]);
+  }, [width]);
 
   return (
     <div className="h-screen bg-black text-white flex flex-col overflow-y-hidden justify-between">
@@ -37,11 +38,11 @@ const Home = () => {
         <Sidebar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} />
         <div className="w-full">
           <Navbar setOpenSidebar={setOpenSidebar} openSidebar={openSidebar} />
-          main content
+          <Outlet />
         </div>
       </div>
     </div>
   );
 };
 
-export default Home;
+export default HomePage;

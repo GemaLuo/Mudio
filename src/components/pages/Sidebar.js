@@ -9,11 +9,11 @@ const Sidebar = ({openSidebar, setOpenSidebar}) => {
   return (
     <div className={`h-full w-[15rem] max-w-[15rem] p-5 bg-slate-800 text-gray-400 group ${!openSidebar && "-translate-x-[15rem]"} transition ease-in-out duration-500 fixed left-0 top-2 lg:static`}>
       <div className="flex items-center justify-between">
-        <div className="font-bold text-4xl text-[#1DB954]">Mudio</div>
-        <CgClose className="text-2xl lg:hidden" onClick={()=>setOpenSidebar(false)}/>
+        <div className="font-bold font-['Quicksand'] text-5xl text-[#1DB954]">Mudio</div>
+        <CgClose className="text-2xl lg:hidden cursor-pointer hover:text-white" onClick={()=>setOpenSidebar(false)}/>
       </div>
       <div className="mt-8">
-        <Link to={""}>
+        <Link to={"/"}>
           <div className="flex items-center mt-4 hover:text-white">
             <HiHome className=" text-gray-400 text-2xl" />
             <h2 className="font-semibold font-sans ml-4">首頁</h2>
