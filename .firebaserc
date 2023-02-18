@@ -1,6 +1,6 @@
 {
   "projects": {
-    "default": "music-develop",
+    "default": "mudio-enjoy-music",
     "Mudio": "mudio-enjoy-music"
   },
   "targets": {},

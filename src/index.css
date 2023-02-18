@@ -12,10 +12,32 @@
     font-family: 'Noto Sans TC', sans-serif;
   }
   .container {
+    padding-left: 5px;
+    padding-right: 5px;
     margin-right: auto;
     margin-left: auto;
   }
   .scrollable {
     scroll-behavior: smooth;
+  }
+  @media (min-width: 768px){
+    .container{
+      width: 750px;
+    }
+  }
+  @media (min-width: 768px){
+    .container{
+      width: 750px;
+    }
+  }
+  @media (min-width: 992px){
+    .container{
+      width: 970px;
+    }
+  }
+  @media (min-width: 1200px){
+    .container{
+      width: 1170px;
+    }
   }
 }

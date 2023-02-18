@@ -38,7 +38,10 @@ const HomePage = () => {
         <Sidebar openSidebar={openSidebar} setOpenSidebar={setOpenSidebar} />
         <div className="w-full">
           <Navbar setOpenSidebar={setOpenSidebar} openSidebar={openSidebar} />
-          <Outlet />
+          <div className="overflow-auto h-full pb-[5rem]">
+            <Outlet />
+          </div>
+          
         </div>
       </div>
     </div>
