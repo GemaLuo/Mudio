@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -9,15 +9,9 @@
   html {
     background-color: #f1f1f1;
     font-family: "Poppins", sans-serif;
-    font-family: 'Noto Sans TC', sans-serif;
+    font-family: "Noto Sans TC", sans-serif;
   }
-  .container {
-    padding-left: 5px;
-    padding-right: 5px;
-    margin-right: auto;
-    margin-left: auto;
-  }
-  .scrollbar{
+  .scrollbar {
     overflow-y: scroll;
   }
   ::-webkit-scrollbar-track {
@@ -28,35 +22,15 @@
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background-color: rgb(169,169,169, 0.4); 
+    background-color: rgb(169, 169, 169, 0.4);
   }
   ::-webkit-scrollbar-thumb:hover {
-    background-color: rgb(192,192,192, 0.5);
+    background-color: rgb(192, 192, 192, 0.5);
   }
   /* ::-webkit-scrollbar-button {
     height: 100px;
   } */
   .scrollable {
     scroll-behavior: smooth;
-  }
-  @media (min-width: 768px){
-    .container{
-      width: 750px;
-    }
-  }
-  @media (min-width: 768px){
-    .container{
-      width: 750px;
-    }
-  }
-  @media (min-width: 992px){
-    .container{
-      width: 970px;
-    }
-  }
-  @media (min-width: 1200px){
-    .container{
-      width: 1170px;
-    }
   }
 }

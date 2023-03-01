@@ -3,7 +3,7 @@ import React from 'react'
 const Album = () => {
   return (
     <div>
-      album
+      show albums user created
     </div>
   )
 }

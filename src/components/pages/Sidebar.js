@@ -14,9 +14,11 @@ const Sidebar = ({ openSidebar, setOpenSidebar }) => {
       } transition ease-in-out duration-500 fixed left-0 top-2 lg:static`}
     >
       <div className="flex items-center justify-between">
-        <div className="font-[Poppins] font-semibold text-5xl text-[#1DB954]">
-          Mudio
-        </div>
+        <Link to={"/"}>
+          <div className="font-[Poppins] font-semibold text-5xl text-[#1DB954]">
+            Mudio
+          </div>
+        </Link>
         <CgClose
           className="text-2xl lg:hidden cursor-pointer hover:text-white"
           onClick={() => setOpenSidebar(false)}

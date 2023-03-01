@@ -1,30 +1,18 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
 
 const Account = () => {
-  const { user, logout } = UserAuth();
-
-  const navigate = useNavigate();
-
-  const handleLogout = async () => {
-    try {
-      await logout();
-      navigate("/");
-      console.log("已成功登出");
-    } catch (e) {
-      console.log(e.message);
-    }
-  };
+  const { user } = UserAuth();
 
   return (
-    <div className="max-w-[600px] mx-auto my-5 p-4">
-      <h1 className="text-2xl font-bold py-2">帳戶</h1>
-      <p>使用者信箱： {user && user.email}</p>
-
-      <button onClick={handleLogout} className="border px-6 py-2 my-4">
-        登出
-      </button>
+    <div className="flex items-center my-3 md:my-4 p-2 md:p-4">
+      <img className="md:ml-6 shadow-xl rounded-full object-cover w-24 h-24 md:w-64 md:h-64" src="https://firebasestorage.googleapis.com/v0/b/mudio-enjoy-music.appspot.com/o/images%2FJascha-Heifetz.jpg?alt=media&token=2b9092df-9c4e-4673-ab36-a5518fce442e" />
+      <div className="md:pl-6">
+        <h1 className="text-xl md:text-2xl font-bold py-2">個人檔案</h1>
+        {/* 使用者相片在左邊，且可更新，並同步到更新頁面 */}
+        <p className="text-lg md:text-xl">信箱： {user && user.email}</p>
+        <p className="text-lg md:text-xl">放使用者的名稱</p>
+      </div>
     </div>
   );
 };
