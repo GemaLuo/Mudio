@@ -17,6 +17,7 @@ const Footer = () => {
   //close volume on click outside
   let audio = useRef("audio_tag");
   let volumeRef = useRef();
+
   useEffect(() => {
     let handler = (e) => {
       if (!volumeRef.current.contains(e.target)) {
@@ -32,6 +33,12 @@ const Footer = () => {
     audio.current.addEventListener("volumechange", (e) => {
       setVolume(+e.target.volume);
     });
+    audio.current.addEventListener("ended", (e)=>{
+      nextSong()
+    })
+    audio.current.addEventListener("canplay", ()=>{
+      audio.current.play()
+    })
   }, []);
 
   const {
@@ -52,15 +59,16 @@ const Footer = () => {
   const [currentTime, setCurrentTime] = useState(0);
   const toggleAudio = () =>
     audio.current.paused ? audio.current.play() : audio.current.pause();
+  
   const handleProgress = (value) => {
-    let compute = value * dur;
+    let compute = value * dur / 100;
     setCurrentTime(compute);
     audio.current.currentTime = compute;
   };
   const fmtMSS = (s) => {
     return (s - (s %= 60)) / 60 + (9 < s ? ":" : ":0") + ~~s;
   };
-  
+
   return (
     <div className="px-2 md:px-4 lg:px-8 z-50 flex items-center justify-between text-white absolute bottom-0 left-0 h-[7rem] bg-neutral-900 w-full border-t border-neutral-700">
       <div className="flex items-center w-full">
@@ -94,9 +102,9 @@ const Footer = () => {
           <RxShuffle
             onClick={toggleRandom}
             className={
-              !random
-                ? "text-2xl cursor-pointer text-gray-400 hover:text-white"
-                : "text-2xl cursor-pointer text-green-500 hover:text-green-400"
+              random
+                ? "text-2xl cursor-pointer text-green-500 hover:text-green-400 "
+                : "text-2xl cursor-pointer text-gray-400 hover:text-white"
             }
           />
           <IoPlaySkipBack
@@ -109,7 +117,7 @@ const Footer = () => {
               toggleAudio();
             }}
           >
-            {!playing ? (
+            {playing ? (
               <HiPause className="text-5xl -mt-3 hover:scale-110 cursor-pointer focus:ring-4 shadow-lg transform active:scale-90 transition-transform" />
             ) : (
               <HiPlay className="text-5xl -mt-3 hover:scale-110 cursor-pointer focus:ring-4 shadow-lg transform active:scale-90 transition-transform" />
@@ -120,10 +128,10 @@ const Footer = () => {
             className="text-2xl cursor-pointer text-gray-400 hover:text-white"
           />
           <div onClick={toggleRepeat}>
-            {!repeat ? (
-              <TbRepeat className="cursor-pointer text-2xl text-gray-400 hover:text-white" />
-            ) : (
+            {repeat ? (
               <TbRepeatOnce className="cursor-pointer text-2xl text-green-500 hover:text-green-400" />
+            ) : (
+              <TbRepeat className="cursor-pointer text-2xl text-gray-400 hover:text-white" />
             )}
           </div>
         </div>
@@ -133,8 +141,7 @@ const Footer = () => {
           </div>
           <Slider
             value={dur ? (currentTime * 100) / dur : 0}
-            onClick={handleProgress}
-            min={0}
+            onChange={handleProgress}
             trackStyle={{ background: "rgb(94 194 105)" }}
             handleStyle={{
               background: "#fff",

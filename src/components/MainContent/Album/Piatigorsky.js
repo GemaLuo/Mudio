@@ -72,7 +72,7 @@ const Piatigorsky = () => {
                           `${index + 1}`
                         )}
                         <span className="text-white -ml-4 text-2xl invisible group-hover:visible">
-                          {!playing && currentSong===song?.id ? (
+                          {playing && currentSong === song?.id ? (
                             <BsPauseFill />
                           ) : (
                             <BsPlayFill />

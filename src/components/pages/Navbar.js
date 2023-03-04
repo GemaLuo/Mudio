@@ -6,8 +6,10 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import Dropbox from "../utils/Dropbox";
 import { useNavigate } from "react-router-dom";
+import { UserAuth } from "../../context/AuthContext";
 
 const Navbar = ({ setOpenSidebar, openSidebar }) => {
+  const {user} =UserAuth()
   const navigate = useNavigate();
   const goBack = () => {
     navigate(-1);
@@ -49,8 +51,8 @@ const Navbar = ({ setOpenSidebar, openSidebar }) => {
           setToggleDropbox(!toggleDropbox);
         }}
       >
-        <BiUserCircle className="bg-neutral-400 p-1 rounded-full h-7 w-7" />
-        <h2 className="font-sans ml-2 font-bold">User</h2>
+        <img src={user.photoURL} className="rounded-full h-8 w-8" />
+        <h2 className="font-sans ml-2 font-bold">{user.displayName}</h2>
         <IoMdArrowDropdown className="ml-2 cursor-pointer" />
         {toggleDropbox && <Dropbox />}
       </div>

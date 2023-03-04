@@ -1,6 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const webpack = require('webpack');
+const webpack = require("webpack");
 
 module.exports = {
   mode: "development",
@@ -16,13 +16,16 @@ module.exports = {
     new webpack.ProgressPlugin(),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
-      title: "Mudio"
+      title: "Mudio",
     }),
   ],
   output: {
     filename: "main.js",
     path: path.resolve(__dirname, "dist"),
-    publicPath: '/'
+    publicPath: "/",
+  },
+  experiments: {
+    topLevelAwait: true,
   },
   module: {
     rules: [

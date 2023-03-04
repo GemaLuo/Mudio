@@ -6,7 +6,7 @@ import { VscLibrary } from "react-icons/vsc";
 import { CgClose } from "react-icons/cg";
 import { BsPlusSquareFill } from "react-icons/bs";
 
-const Sidebar = ({ openSidebar, setOpenSidebar }) => {
+const Sidebar = ({ openSidebar, setOpenSidebar, setOpenModal }) => {
   return (
     <div
       className={`z-50 h-full w-[15rem] max-w-[15rem] p-5 bg-black text-gray-400 group ${
@@ -44,12 +44,12 @@ const Sidebar = ({ openSidebar, setOpenSidebar }) => {
           </div>
         </Link>
 
-        <Link to={"/create-playlist"}>
-          <div className="flex items-center mt-3 text-neutral-400 hover:text-white">
+        <div>
+          <button className="cursor-pointer flex items-center mt-3 text-neutral-400 hover:text-white" onClick={()=>setOpenModal(true)}>
             <BsPlusSquareFill className="text-2xl" />
             <h2 className="font-[700] text-md font-sans ml-4">建立播放清單</h2>
-          </div>
-        </Link>
+          </button>
+        </div>
       </div>
     </div>
   );
