@@ -3,7 +3,7 @@ import { RxShuffle } from "react-icons/rx";
 import { IoPlaySkipBack } from "react-icons/io5";
 import { IoPlaySkipForward } from "react-icons/io5";
 import { HiPlay, HiPause } from "react-icons/hi";
-import { TbRepeat, TbRepeatOnce } from "react-icons/tb";
+// import { TbRepeat, TbRepeatOnce } from "react-icons/tb";
 import { SlVolume2, SlVolumeOff } from "react-icons/sl";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
@@ -33,23 +33,22 @@ const Footer = () => {
     audio.current.addEventListener("volumechange", (e) => {
       setVolume(+e.target.volume);
     });
-    audio.current.addEventListener("ended", (e)=>{
-      nextSong()
-    })
-    audio.current.addEventListener("canplay", ()=>{
-      audio.current.play()
-    })
+    audio.current.addEventListener("ended", (e) => {
+      nextSong();
+    });
+    audio.current.addEventListener("canplay", () => {
+      audio.current?.play();
+    });
   }, []);
 
   const {
     currentSong,
     nextSong,
     prevSong,
-    repeat,
     random,
     playing,
     toggleRandom,
-    toggleRepeat,
+
     togglePlaying,
     handleEnd,
     songslist,
@@ -59,14 +58,14 @@ const Footer = () => {
   const [currentTime, setCurrentTime] = useState(0);
   const toggleAudio = () =>
     audio.current.paused ? audio.current.play() : audio.current.pause();
-  
+
   const handleProgress = (value) => {
-    let compute = value * dur / 100;
+    let compute = (value * dur) / 100;
     setCurrentTime(compute);
     audio.current.currentTime = compute;
   };
   const fmtMSS = (s) => {
-    return (s - (s %= 60)) / 60 + (9 < s ? ":" : ":0") + ~~s;
+    return (s - (s %= 60)) / 60 + (10 < s ? ":" : ":0") + ~~s;
   };
 
   return (
@@ -88,25 +87,19 @@ const Footer = () => {
           </a>
         </div>
       </div>
+
       <div className="w-full">
         <audio
           ref={audio}
           onTimeUpdate={(e) => setCurrentTime(e.target.currentTime)}
-          onCanPlay={(e)=>setDur(e.target.duration)}
+          onCanPlay={(e) => setDur(e.target.duration)}
           onEnded={handleEnd}
           type="audio/mpeg"
           preload="true"
           src={songslist[currentSong].song}
+          autoPlay={true}
         />
         <div className="flex ml-3 justify-center space-x-3 md:space-x-4 lg:space-x-5">
-          <RxShuffle
-            onClick={toggleRandom}
-            className={
-              random
-                ? "text-2xl cursor-pointer text-green-500 hover:text-green-400 "
-                : "text-2xl cursor-pointer text-gray-400 hover:text-white"
-            }
-          />
           <IoPlaySkipBack
             onClick={prevSong}
             className="cursor-pointer text-2xl text-gray-400 hover:text-white"
@@ -117,23 +110,16 @@ const Footer = () => {
               toggleAudio();
             }}
           >
-            {playing ? (
-              <HiPause className="text-5xl -mt-3 hover:scale-110 cursor-pointer focus:ring-4 shadow-lg transform active:scale-90 transition-transform" />
-            ) : (
+            {!playing ? (
               <HiPlay className="text-5xl -mt-3 hover:scale-110 cursor-pointer focus:ring-4 shadow-lg transform active:scale-90 transition-transform" />
+            ) : (
+              <HiPause className="text-5xl -mt-3 hover:scale-110 cursor-pointer focus:ring-4 shadow-lg transform active:scale-90 transition-transform" />
             )}
           </div>
           <IoPlaySkipForward
             onClick={nextSong}
             className="text-2xl cursor-pointer text-gray-400 hover:text-white"
           />
-          <div onClick={toggleRepeat}>
-            {repeat ? (
-              <TbRepeatOnce className="cursor-pointer text-2xl text-green-500 hover:text-green-400" />
-            ) : (
-              <TbRepeat className="cursor-pointer text-2xl text-gray-400 hover:text-white" />
-            )}
-          </div>
         </div>
         <div className="flex items-center justify-between w-60 sm:w-72 md:w-80 lg:w-full">
           <div className="md:-mr-6 invisible md:visible md:text-base">
@@ -157,6 +143,14 @@ const Footer = () => {
       </div>
 
       <div className="flex w-full h-full justify-end items-center">
+        <RxShuffle
+          onClick={toggleRandom}
+          className={
+            random
+              ? "text-xl mr-3 cursor-pointer text-green-500 hover:text-green-400 "
+              : "text-xl mr-3 cursor-pointer text-gray-400 hover:text-white"
+          }
+        />
         <div
           ref={volumeRef}
           onClick={() => {

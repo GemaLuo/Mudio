@@ -40,14 +40,14 @@ const Signup = () => {
               email,
               photoURL: downloadURL,
             });
-            // await setDoc(doc(db, `users/${res.user.uid}/UserPlaylist`, res.user.uid), {});
+            // await setDoc(doc(db, `users/${res.user.uid}/Playlist`), {});
           } catch (error) {
             console.log(error);
             setError(true);
           }
         });
       });
-      navigate("/");
+      navigate("/signin");
     } catch (error) {
       setError(true);
       console.log(error.message);

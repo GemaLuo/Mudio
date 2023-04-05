@@ -2,35 +2,43 @@ import React, { useEffect, useState } from "react";
 import { IoCloseOutline } from "react-icons/io5";
 import { CgMusic } from "react-icons/cg";
 import { HiOutlinePencil } from "react-icons/hi";
-import { addDoc, collection, doc, serverTimestamp } from "firebase/firestore";
+import { addDoc, collection, doc, orderBy, serverTimestamp } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { storage, db } from "../../firebase";
 import { UserAuth } from "../../context/AuthContext";
+import { Songs } from "../MainContent/Album/Songs";
+import { MultiSelect } from "react-multi-select-component";
 
 const initialState = {
   title: "",
   description: "",
+  options: [],
 };
 
 const CreatePlaylistModal = ({ open, onClose }) => {
   const [form, setForm] = useState(initialState);
   const [file, setFile] = useState(null);
   const [progress, setProgress] = useState(null);
-  const { title, description } = form;
-  const res = UserAuth();
+  const { title, description, options } = form;
 
+  const res = UserAuth();
   useEffect(() => {
     const uploadFile = () => {
-      const storageRef = ref(storage, `/playlist-cover/${Date.now()}+${file.name}`);
+      const storageRef = ref(
+        storage,
+        `/playlist-cover/${res.user.displayName}/${Date.now()}+${file.name}`
+      );
       const uploadTask = uploadBytesResumable(storageRef, file);
 
       uploadTask.on(
         "state_changed",
         (snapshot) => {
           const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log("upload is " + progress + "% done");
+            Math.floor(snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           setProgress(progress);
+          if (progress === 100) {
+            alert("照片上傳完畢");
+          }
           switch (snapshot.state) {
             case "paused":
               console.log("upload is paused.");
@@ -54,32 +62,47 @@ const CreatePlaylistModal = ({ open, onClose }) => {
     file && uploadFile();
   }, [file]);
 
-  console.log("form", form);
+  // console.log("form", form);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
+
+  const optionsList = Songs.map((items) => {
+    return { label: items.songName.toString(), value: items.id, imgURL: items.imgSrc, song: items.song, songDuration: items.songDuration };
+  });
+  const [selectedOptions, setSelectedOptions] = useState([]);
+  const handleOptions = (e) => {
+    setSelectedOptions(e);
+    setForm({ ...form, options: e });
+  };
+  // console.log(selectedOptions);
+  // console.log([options])
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (file && title) {
+    if (file && title && options) {
       try {
         await addDoc(collection(db, "Playlists"), {
           ...form,
-          timestamp: serverTimestamp().toDate(),
+          timestamp: serverTimestamp(),
           uid: res.user.uid,
         });
+        orderBy('date', 'desc')
       } catch (err) {
         console.log(err);
       }
     }
-    alert("新增成功");
+    alert("新增成功！");
     onClose();
+    e.reset();
   };
   if (!open) return null;
+
   return (
     <div
       onClick={onClose}
-      className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center"
+      className="fixed z-50 inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center"
     >
       <div
         onClick={(e) => {
@@ -113,26 +136,46 @@ const CreatePlaylistModal = ({ open, onClose }) => {
                 </div>
               </label>
             </div>
-            <div className="pl-4">
-              <div className="pb-3">
+            <div className="pl-4 pt-2 w-64">
+              <div className="pb-5">
                 <input
                   onChange={handleChange}
                   value={title}
                   name="title"
                   type="text"
                   maxLength="50"
-                  className="tracking-wider font-light focus:outline-[#757575] placeholder-[#a9a9a9] border-neutral-700 bg-[#3e3d3d] py-3 px-4 border rounded-md appearance-none leading-tight focus:outline-none focus:shadow-outline"
+                  className="tracking-wider w-full font-light focus:outline-[#757575] placeholder-[#a9a9a9] border-neutral-700 bg-[#3e3d3d] py-3 px-4 border rounded-md appearance-none leading-tight focus:outline-none focus:shadow-outline"
                   placeholder="播放清單標題"
+                  required
                 />
               </div>
-
+              <div className="w-full pb-3">
+                <MultiSelect
+                  overrideStrings={{
+                    allItemsAreSelected: "已選擇所有選項",
+                    clearSearch: "清除搜尋",
+                    clearSelected: "清除選項",
+                    noOptions: "沒有選項",
+                    search: "關鍵字搜尋",
+                    selectAll: "選擇全部",
+                    selectAllFiltered: "選擇全部（篩選過）",
+                    selectSomeItems: "選擇喜歡的曲目...",
+                    create: "建立",
+                  }}
+                  className="dark"
+                  options={optionsList}
+                  value={selectedOptions}
+                  onChange={(e)=> handleOptions(e)}
+                  labelledBy="Select"
+                />
+              </div>
               <div>
                 <textarea
                   onChange={handleChange}
                   value={description}
                   name="description"
                   maxLength="200"
-                  className="w-full resize-none focus:outline-[#757575] placeholder-[#a9a9a9] h-[135px] tracking-wider border-neutral-700 bg-[#3e3d3d] border py-3 px-4 shadow-md rounded-md appearance-none leading-tight focus:outline-none focus:shadow-outline"
+                  className="w-full resize-none focus:outline-[#757575] placeholder-[#a9a9a9] h-[46px] tracking-wider border-neutral-700 bg-[#3e3d3d] border mt-2 py-3 px-4 shadow-md rounded-md appearance-none leading-tight focus:outline-none focus:shadow-outline"
                   placeholder="新增說明（選填）"
                 />
               </div>
@@ -142,11 +185,12 @@ const CreatePlaylistModal = ({ open, onClose }) => {
             <button
               type="submit"
               disabled={progress !== null && progress < 100}
-              className="text-lg font-medium border-zinc-700 bg-zinc-800 hover:bg-zinc-900 text-white px-52 py-2 border rounded-full"
+              className="disabled:opacity-25 text-lg font-medium border-zinc-700 bg-zinc-800 hover:bg-zinc-900 text-white px-52 py-2 mb-2 border rounded-full"
             >
               新 增
             </button>
           </div>
+          <div className="text-center">照片上傳進度：{progress}%</div>
         </form>
       </div>
     </div>

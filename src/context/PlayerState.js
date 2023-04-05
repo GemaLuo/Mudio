@@ -8,7 +8,7 @@ const PlayerState = (props) => {
   const initialState = {
     currentSong: 0,
     songslist: Songs,
-    repeat: false,
+
     random: false,
     playing: true,
     audio: null
@@ -40,9 +40,9 @@ const PlayerState = (props) => {
 
   //Next song
   const nextSong = () => {
-    if (state.repeat){
-      return SetCurrent(state.currentSong)
-    }
+    // if (state.repeat){
+    //   return SetCurrent(state.currentSong)
+    // }
     if (state.random) {
       return SetCurrent(~~(Math.random() * state.songslist.length));
     }
@@ -54,8 +54,8 @@ const PlayerState = (props) => {
   };
 
   //Repeat and Random
-  const toggleRepeat = (id) =>
-    dispatch({ type: "TOGGLE_REPEAT", data: state.repeat ? false : true });
+  // const toggleRepeat = (id) =>
+  //   dispatch({ type: "TOGGLE_REPEAT", data: state.repeat ? false : true });
 
   const toggleRandom = (id) =>
     dispatch({ type: "TOGGLE_RANDOM", data: state.random ? false : true });
@@ -65,13 +65,7 @@ const PlayerState = (props) => {
     if (state.random) {
       return SetCurrent(~~(Math.random() * state.songslist.length))
     } else {
-      if (state.repeat) {
-        nextSong();
-      } else if (state.currentSong === state.songslist.length - 1) {
-        return;
-      } else {
-        nextSong();
-      }
+      nextSong()
     }
   };
 
@@ -80,7 +74,7 @@ const PlayerState = (props) => {
       value={{
         currentSong: state.currentSong,
         songslist: state.songslist,
-        repeat: state.repeat,
+
         random: state.random,
         playing: state.playing,
         audio: state.audio,
@@ -90,7 +84,6 @@ const PlayerState = (props) => {
         prevSong,
         togglePlaying,
         toggleRandom,
-        toggleRepeat,
         handleEnd,
       }}
     >

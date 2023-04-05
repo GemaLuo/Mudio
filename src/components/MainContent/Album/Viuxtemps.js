@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { BsPlayFill, BsPauseFill } from "react-icons/bs";
 import { HiOutlineClock } from "react-icons/hi2";
 import PlayerContext from "../../../context/PlayerContext";
@@ -13,6 +13,17 @@ const Viuxtemps = () => {
     "https://firebasestorage.googleapis.com/v0/b/mudio-enjoy-music.appspot.com/o/images%2FVieuxtemps%20violin%20concerto%20no.5%20op.37%20bruch%20scottish%20fantasy%2C%20op.46.png?alt=media&token=2cb905a9-35a6-4143-94fc-13b0c43e0615";
   const heifetz =
     "https://firebasestorage.googleapis.com/v0/b/mudio-enjoy-music.appspot.com/o/images%2Fjascha-heifetz.jpeg?alt=media&token=94977433-2674-421c-bc07-43824acedca5";
+
+  // const [songs, setSongs] = useState(albumList);
+
+  // const changeFavorite = (id) => {
+  //   albumList.forEach((song) => {
+  //     if (song.id === id) {
+  //       song.favorite = !song.favorite;
+  //     }
+  //   });
+  //   setSongs([...albumList]);
+  // };
   return (
     <div className="w-full overflow-auto">
       <div className="flex-none md:flex justify-center md:justify-center lg:justify-start bg-gradient-to-b from-red-600 to-red-800/5 h-72 md:h-80">
@@ -47,8 +58,7 @@ const Viuxtemps = () => {
       </div>
 
       <div className="mx-4 mb-12 relative top-16 md:top-2 md:left-4 md:w-11/12">
-        <BsPlayFill className="mt-2 ml-1 md:mb-4 cursor-pointer bg-green-500 rounded-full p-2 text-black w-14 h-14 hover:scale-105 focus:ring-4 shadow-lg transform active:scale-90 active:bg-green-600 transition-transform" />
-
+        
         <p className="invisible md:flex md:justify-between md:visible md:mt-3 md:mb-14 pb-2 pl-4 text-lg border-b border-zinc-600 text-zinc-400">
           #<span className="absolute left-[3.5rem]">標題</span>
           <HiOutlineClock className="relative top-1 right-6 lg:right-10" />
@@ -66,14 +76,14 @@ const Viuxtemps = () => {
                   <td className="rounded-l-md">
                     <div className="flex items-center md:w-3/4">
                       <p className="ml-2 py-4 md:ml-4 md:mr-4 group-hover:invisible flex">
-                        {currentSong === index ? (
+                        {currentSong === song?.id ? (
                           <IoStatsChart className="-ml-1 mt-1 -mr-1" />
                         ) : (
                           `${index + 1}`
                         )}
                         <span className="text-white -ml-4 text-2xl invisible group-hover:visible">
-                          {playing && currentSong ===song?.id ? (
-                            <BsPauseFill/>
+                          {playing && currentSong === song?.id ? (
+                            <BsPauseFill />
                           ) : (
                             <BsPlayFill />
                           )}

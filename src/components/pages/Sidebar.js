@@ -5,6 +5,7 @@ import { BiSearch } from "react-icons/bi";
 import { VscLibrary } from "react-icons/vsc";
 import { CgClose } from "react-icons/cg";
 import { BsPlusSquareFill } from "react-icons/bs";
+import { FaHeart } from "react-icons/fa";
 
 const Sidebar = ({ openSidebar, setOpenSidebar, setOpenModal }) => {
   return (
@@ -32,20 +33,29 @@ const Sidebar = ({ openSidebar, setOpenSidebar, setOpenModal }) => {
           </div>
         </Link>
         <Link to={"/search"}>
-          <div className="flex items-center mt-3 text-neutral-400 hover:text-white">
+          <div className="flex items-center mt-4 text-neutral-400 hover:text-white">
             <BiSearch className="text-2xl" />
             <h2 className="font-[700] text-md font-sans ml-4">搜尋</h2>
           </div>
         </Link>
+
         <Link to={"/album"}>
-          <div className="flex items-center mt-3 text-neutral-400 hover:text-white">
+          <div className="flex items-center mt-4 text-neutral-400 hover:text-white">
             <VscLibrary className="text-2xl" />
-            <h2 className="font-[700] text-md font-sans ml-4">我的音樂庫</h2>
+            <h2 className="font-[700] text-md font-sans ml-4">你的音樂庫</h2>
           </div>
         </Link>
-
+        {/* <Link to={"/favorite"}>
+          <div className="flex items-center mt-4 text-neutral-400 hover:text-white">
+            <FaHeart className="text-2xl bg-gradient-to-br rounded-sm from-indigo-700 via-indigo-500 to-indigo-200 p-1" />
+            <h2 className="font-[700] text-md font-sans ml-4">已按讚的歌曲</h2>
+          </div>
+        </Link> */}
         <div>
-          <button className="cursor-pointer flex items-center mt-3 text-neutral-400 hover:text-white" onClick={()=>setOpenModal(true)}>
+          <button
+            className="cursor-pointer flex items-center mt-4 text-neutral-400 hover:text-white"
+            onClick={() => setOpenModal(true)}
+          >
             <BsPlusSquareFill className="text-2xl" />
             <h2 className="font-[700] text-md font-sans ml-4">建立播放清單</h2>
           </button>

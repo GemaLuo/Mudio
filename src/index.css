@@ -30,6 +30,16 @@
   /* ::-webkit-scrollbar-button {
     height: 100px;
   } */
+  .rmsc.dark {
+    --rmsc-main: #3e3d3d;
+    --rmsc-hover: #0e0c0a;
+    --rmsc-selected: #1d1915;
+    --rmsc-border: rgb(64, 64, 64);
+    --rmsc-gray: #a9a9a9;
+    --rmsc-bg: #3e3d3d;
+    --rmsc-h: 46px;
+    color: #a9a9a9;
+  }
   .scrollable {
     scroll-behavior: smooth;
   }

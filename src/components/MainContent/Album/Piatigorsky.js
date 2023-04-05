@@ -4,6 +4,7 @@ import { HiOutlineClock } from "react-icons/hi2";
 import { useContext } from "react";
 import PlayerContext from "../../../context/PlayerContext";
 import { IoStatsChart } from "react-icons/io5";
+import { RiHeart3Line } from "react-icons/ri";
 
 const Piatigorsky = () => {
   const { songslist, currentSong, SetCurrent, playing } =
@@ -48,7 +49,6 @@ const Piatigorsky = () => {
       </div>
 
       <div className="mx-4 mb-12 relative top-16 md:top-2 md:left-4 md:w-11/12">
-        <BsPlayFill className="mt-2 ml-1 md:mb-4 cursor-pointer bg-green-500 rounded-full p-2 text-black w-14 h-14 hover:scale-105 focus:ring-4 shadow-lg transform active:scale-90 active:bg-green-600 transition-transform" />
         <p className="invisible md:flex md:justify-between md:visible md:mt-3 md:mb-14 pb-2 pl-4 text-lg border-b border-zinc-600 text-zinc-400">
           #<span className="absolute left-[3.5rem]">標題</span>
           <HiOutlineClock className="relative top-1 right-6 lg:right-10" />
@@ -66,7 +66,7 @@ const Piatigorsky = () => {
                   <td className="rounded-l-md">
                     <div className="flex items-center md:w-3/4">
                       <p className="ml-2 py-4 md:ml-4 md:mr-4 group-hover:invisible flex">
-                        {currentSong === index ? (
+                        {currentSong === song?.id ? (
                           <IoStatsChart className="-ml-1 mt-1 -mr-1" />
                         ) : (
                           `${index + 1}`
@@ -84,6 +84,7 @@ const Piatigorsky = () => {
                       </p>
                     </div>
                   </td>
+
                   <td className="rounded-r-md pr-4 lg:pr-0 text-neutral-400">
                     {song?.songDuration}
                   </td>

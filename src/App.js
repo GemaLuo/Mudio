@@ -15,6 +15,7 @@ import Korngold from "./components/MainContent/Album/Korngold";
 import Piatigorsky from "./components/MainContent/Album/Piatigorsky";
 import PlayerState from "./context/PlayerState.js";
 import UserPlaylist from "./components/MainContent/Album/UserPlaylist.js";
+import Favorite from "./components/MainContent/Album/Favorite.js";
 
 const App = () => {
   return (
@@ -38,7 +39,7 @@ const App = () => {
               <Route path="search" element={<Search />} />
               <Route path="album" element={<Album />} />
               <Route path="artist=heifetz" element={<Artist />} />
-              
+              <Route path="favorite" element={<Favorite />} />
               <Route path="album/user-playlist/:id" element={<UserPlaylist/>} />
               <Route path="album-viuxtemps" element={<Viuxtemps />} />
               <Route path="album-Korngold" element={<Korngold />} />

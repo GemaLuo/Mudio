@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BsPatchCheckFill } from "react-icons/bs";
-import { BsPlayFill } from "react-icons/bs";
+import { BsPlayFill, BsPauseFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { Songs } from "./Album/Songs";
+import { useContext } from "react";
+import PlayerContext from "../../context/PlayerContext";
+import { IoStatsChart } from "react-icons/io5";
 
 const Artist = () => {
+  const { currentSong, SetCurrent, playing } = useContext(PlayerContext);
   const heifetz =
     "https://firebasestorage.googleapis.com/v0/b/mudio-enjoy-music.appspot.com/o/images%2Fjascha-heifetz.jpeg?alt=media&token=94977433-2674-421c-bc07-43824acedca5";
 
@@ -15,6 +20,23 @@ const Artist = () => {
 
   const quartet =
     "https://firebasestorage.googleapis.com/v0/b/mudio-enjoy-music.appspot.com/o/images%2FPiano%20Quartet%20Image.png?alt=media&token=9da63c22-5818-45d7-b552-34dfdb0ded95";
+
+  const getRandom = (songsCount) => {
+    let randomNumber = Math.floor(Math.random() * Songs.length);
+    let i = 0;
+    const newArray = [];
+    while (i < songsCount) {
+      newArray.push(Songs[randomNumber % Songs.length]);
+      randomNumber++;
+      i++;
+    }
+    return newArray;
+  };
+
+  const [randomSongs, setRandomSongs] = useState([]);
+  useEffect(() => {
+    setRandomSongs(getRandom(5));
+  }, []);
 
   return (
     <div className="w-full overflow-auto">
@@ -33,110 +55,41 @@ const Artist = () => {
       <div className="mx-4 -mt-16">
         <p className="mb-4 pl-2 text-2xl font-bold">熱門</p>
 
-        <table className="w-full">
-          <tbody>
-            <tr className="hover:bg-zinc-700 cursor-pointer group">
-              <td className="rounded-l-md">
-                <div className="flex items-center">
-                  <p className="mx-4 md:mr-2 flex group-hover:invisible">
-                    1
-                    <span className="-ml-4 text-2xl invisible group-hover:visible">
-                      <BsPlayFill />
-                    </span>
-                  </p>
-                  <img className="w-12 my-2" src={viuxtemps} />
-                  <p className="ml-4 truncate ...">
-                    Violin Concerto No. 5 in A Minor, Op. 37_ I. Allegro non
-                    troppo - Moderato
-                  </p>
-                </div>
-              </td>
-              <td className="rounded-r-md">12:39</td>
-            </tr>
-          </tbody>
-
-          <tbody>
-            <tr className="hover:bg-zinc-700 cursor-pointer group">
-              <td className="rounded-l-md">
-                <div className="flex items-center">
-                <p className="mx-4 md:mr-2 flex group-hover:invisible">
-                    2
-                    <span className="-ml-4 text-2xl invisible group-hover:visible">
-                      <BsPlayFill />
-                    </span>
-                  </p>
-                  <img className="w-12 my-2" src={viuxtemps} />
-                  <p className="ml-4 truncate ...">
-                    Violin Concerto No. 5 in A Minor, Op. 37_ III. Allegro con
-                    fuoco
-                  </p>
-                </div>
-              </td>
-              <td className="rounded-r-md">01:07</td>
-            </tr>
-          </tbody>
-
-          <tbody>
-            <tr className="hover:bg-zinc-700 cursor-pointer group">
-              <td className="rounded-l-md">
-                <div className="flex items-center">
-                <p className="mx-4 md:mr-2 flex group-hover:invisible">
-                    3
-                    <span className="-ml-4 text-2xl invisible group-hover:visible">
-                      <BsPlayFill />
-                    </span>
-                  </p>
-                  <img className="w-12 my-2" src={viuxtemps} />
-                  <p className="ml-4 truncate ...">
-                    Scottish Fantasy for Violin and Orchestra, Op. 46_ II.
-                    Scherzo. Allegro
-                  </p>
-                </div>
-              </td>
-              <td className="rounded-r-md">05:32</td>
-            </tr>
-          </tbody>
-
-          <tbody>
-            <tr className="hover:bg-zinc-700 cursor-pointer group">
-              <td className="rounded-l-md">
-                <div className="flex items-center">
-                <p className="mx-4 md:mr-2 flex group-hover:invisible">
-                    4
-                    <span className="-ml-4 text-2xl text-white invisible group-hover:visible">
-                      <BsPlayFill />
-                    </span>
-                  </p>
-                  <img className="w-12 my-2" src={korngold} />
-                  <p className="ml-4 truncate ...">
-                    Violin Concerto in D Op.35 I. Moderato Nobile
-                  </p>
-                </div>
-              </td>
-              <td className="rounded-r-md">07:53</td>
-            </tr>
-          </tbody>
-
-          <tbody>
-            <tr className="hover:bg-zinc-700 cursor-pointer group">
-              <td className="rounded-l-md">
-                <div className="flex items-center">
-                <p className="mx-4 md:mr-2 flex group-hover:invisible">
-                    5
-                    <span className="-ml-4 text-2xl invisible group-hover:visible">
-                      <BsPlayFill />
-                    </span>
-                  </p>
-                  <img className="w-12 my-2" src={quartet} />
-                  <p className="ml-4 truncate ...">
-                    Piano Quartet No. 3 in C Minor, Op. 60_ I. Allegro ma non
-                    troppo
-                  </p>
-                </div>
-              </td>
-              <td className="rounded-r-md">09:01</td>
-            </tr>
-          </tbody>
+        <table className="w-5/6 ml-2">
+          { randomSongs.map((song, index) => (
+              <tbody
+                key={index}
+                onClick={() => SetCurrent(song?.id)}
+                className={currentSong === song?.id ? "text-green-500" : ""}
+              >
+                <tr className="hover:bg-zinc-700 group cursor-pointer">
+                  <td className="rounded-l-md">
+                    <div className="flex items-center md:w-3/4">
+                      <p className="ml-2 py-4 md:ml-4 md:mr-4 group-hover:invisible flex">
+                        {currentSong === song?.id ? (
+                          <IoStatsChart className="-ml-1 mt-1 -mr-1" />
+                        ) : (
+                          `${index + 1}`
+                        )}
+                        <span className="text-white -ml-4 text-2xl invisible group-hover:visible">
+                          {playing && currentSong === song?.id ? (
+                            <BsPauseFill />
+                          ) : (
+                            <BsPlayFill />
+                          )}
+                        </span>
+                      </p>
+                      <p className="ml-4 line-clamp-1 font-medium">
+                        {song?.songName}
+                      </p>
+                    </div>
+                  </td>
+                  <td className="rounded-r-md pr-4 lg:pr-0 text-neutral-400">
+                    {song?.songDuration}
+                  </td>
+                </tr>
+              </tbody>
+            ))}
         </table>
 
         <div className="mt-4">
@@ -175,7 +128,8 @@ const Artist = () => {
 
             <div className="mt-2 lg:mt-5">
               <h1 className="font-bold truncate ...">
-              Brahms: Piano Quartet No. 3 in C Minor, Op. 60 - Dvořák: Piano Quintet No. 2 in A Major, Op. 81
+                Brahms: Piano Quartet No. 3 in C Minor, Op. 60 - Dvořák: Piano
+                Quintet No. 2 in A Major, Op. 81
               </h1>
               <p className="text-zinc-500 mt-2">Jascha Heifetz</p>
             </div>
