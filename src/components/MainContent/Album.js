@@ -33,7 +33,7 @@ const Album = () => {
   // console.log("playlists", playlist);
   return (
     <div className="scrollbar px-4 mb-20">
-      <h1 className="mt-8 mb-4 ml-6 text-lg lg:text-2xl font-bold">
+      <h1 className="mt-2 mb-4 ml-3 text-lg lg:text-2xl font-bold">
         你的播放清單
       </h1>
       {loading ? (
@@ -41,7 +41,7 @@ const Album = () => {
           <ScaleLoader color="#57b660" />
         </div>
       ) : (
-        <div className="px-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+        <div className="pl-3 grid grid-cols-1 gap-4 tablet:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
           {playlist.length === 0 ? (
             <p className="text-lg">還沒建立播放清單</p>
           ) : (

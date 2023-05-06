@@ -7,6 +7,7 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { updateProfile } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
+import earphone from "../img/login-page-pic.jpg";
 
 const Signup = () => {
   const [error, setError] = useState(false);
@@ -40,9 +41,8 @@ const Signup = () => {
               email,
               photoURL: downloadURL,
             });
-            // await setDoc(doc(db, `users/${res.user.uid}/Playlist`), {});
           } catch (error) {
-            console.log(error);
+            
             setError(true);
           }
         });
@@ -50,70 +50,80 @@ const Signup = () => {
       navigate("/signin");
     } catch (error) {
       setError(true);
-      console.log(error.message);
+      
     }
   };
 
   return (
-    <div className="h-screen w-screen flex items-center justify-center overflow-auto bg-neutral-800 p-5">
-      <div className="max-w-[340px] md:max-w-[380px] lg:max-w-[400px] w-full mb-5 p-3">
-        <form
-          onSubmit={handleSubmit}
-          className="bg-neutral-100 shadow-md rounded px-8 pt-6 pb-8"
-        >
-          <div>
-            <h1 className="text-center text-green-500 text-5xl font-extrabold pt-1 pb-3">
-              Mudio
+    <section className="bg-[#8b8f86] w-full h-screen flex">
+      <div className="grid grid-cols-1 sm:grid-cols-2 m-auto h-[450px] shadow-lg shadow-gray-600 rounded-2xl ">
+        {/*左邊*/}
+        <div className="w-full h-[450px] hidden sm:block">
+          <img
+            className="w-full h-full rounded-l-xl"
+            src={earphone}
+            alt="封面相片"
+          />
+        </div>
+
+        {/* 右邊 */}
+        <div className="p-6 tablet:p-8 flex flex-col rounded-xl sm:rounded-l-none sm:rounded-r-xl bg-[#e2e7dc] justify-around">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-y-3">
+            <h1 className="font-mudio text-center text-[#97c291] text-4xl font-semibold">
+              MUDIO
             </h1>
-            <h1 className="text-center text-2xl font-bold pt-1 pb-3">註冊</h1>
-          </div>
-          <div className="flex flex-col py-2 mb-2">
+            <h1 className="text-center text-2xl font-bold">註 冊</h1>
             <input
-              className="tracking-wider border rounded w-full shadow appearance-none p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="w-full border rounded-xl shadow appearance-none px-4 py-2 mt-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               type="text"
               placeholder="使用者名稱"
             />
-          </div>
-          <div className="flex flex-col py-2 mb-2">
+
             <input
-              className="tracking-wider border rounded w-full shadow appearance-none p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="w-full border rounded-xl shadow appearance-none px-4 py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               type="email"
               placeholder="電子信箱"
             />
-          </div>
-          <div className="flex flex-col py-2 mb-2">
+
             <input
-              className="tracking-wider border rounded w-full shadow appearance-none p-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="w-full border rounded-xl shadow appearance-none px-4 py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               type="password"
               placeholder="密 碼"
             />
-          </div>
-          <div className="flex flex-col py-2">
-            <input style={{ display: "none" }} type="file" id="file" />
-            <label htmlFor="file" className="cursor-pointer flex items-center">
-              <FcAddImage className="w-16 h-16 " />
-              <span className="pl-2 tracking-wider text-gray-500">
-                選擇相片
+
+            <div className="flex flex-col">
+              <input style={{ display: "none" }} type="file" id="file" />
+              <label
+                htmlFor="file"
+                className="cursor-pointer flex items-center"
+              >
+                <FcAddImage className="w-10 h-10" />
+                <span className="pl-2 tracking-wider text-gray-500">
+                  選擇相片
+                </span>
+              </label>
+            </div>
+            <button className="w-full border border-[#76806f] bg-[#76806f] hover:bg-[#979c93] hover:border-[#979c93] hover:scale-105 duration-300 active:scale-100 active:duration-75 ease-in-out transition p-[4px] text-white font-bold rounded-xl focus:outline-none focus:shadow-outline">
+              註 冊
+            </button>
+            {error && (
+              <span className="flex justify-center text-red-700 text-base font-semibold">
+                註冊失敗，請重新註冊
               </span>
-            </label>
-          </div>
-          <button className="border border-blue-500 bg-blue-500 hover:bg-blue-700 w-full p-3 mb-2 mt-3 text-white font-bold rounded focus:outline-none focus:shadow-outline">
-            註冊
-          </button>
-          {error && (
-            <span className="flex justify-center text-red-700 text-lg font-semibold">
-              註冊失敗，請重新註冊
-            </span>
-          )}
-          <p className="py-2">
-            已經有帳號？
-            <Link to="/signin" className="text-sky-500 underline">
-              點此登入
-            </Link>
-          </p>
-        </form>
+            )}
+            <p className="flex justify-center">
+              已經有帳號？
+              <Link
+                to="/signin"
+                className="text-[#76806f] hover:text-[#979c93] underline"
+              >
+                點此登入
+              </Link>
+            </p>
+          </form>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

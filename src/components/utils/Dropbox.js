@@ -10,7 +10,6 @@ const Dropbox = () => {
     try {
       await logout();
       navigate("/");
-      console.log("已成功登出");
     } catch (e) {
       console.log(e.message);
     }

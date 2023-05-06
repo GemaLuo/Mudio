@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,7 +8,7 @@
 
 @layer base {
   html {
-    background-color: #f1f1f1;
+    margin: 0;
     font-family: "Poppins", sans-serif;
     font-family: "Noto Sans TC", sans-serif;
   }
@@ -37,7 +38,7 @@
     --rmsc-border: rgb(64, 64, 64);
     --rmsc-gray: #a9a9a9;
     --rmsc-bg: #3e3d3d;
-    --rmsc-h: 46px;
+    --rmsc-h: 43px;
     color: #a9a9a9;
   }
   .scrollable {

@@ -48,7 +48,6 @@ const Footer = () => {
     random,
     playing,
     toggleRandom,
-
     togglePlaying,
     handleEnd,
     songslist,
@@ -75,8 +74,8 @@ const Footer = () => {
           className="w-14 hidden md:block"
           src={songslist[currentSong].imgSrc}
         />
-        <div className="md:pl-2 lg:pl-4">
-          <h1 className="w-14 md:w-40 lg:w-64 text-lg font-medium line-clamp-2">
+        <div className="ml-2 md:pl-2 lg:pl-4">
+          <h1 className="w-[72px] tablet:w-24 md:w-36 lg:w-64 text-lg font-medium line-clamp-2">
             {songslist[currentSong].songName}
           </h1>
           <a
@@ -97,9 +96,8 @@ const Footer = () => {
           type="audio/mpeg"
           preload="true"
           src={songslist[currentSong].song}
-          autoPlay={true}
         />
-        <div className="flex ml-3 justify-center space-x-3 md:space-x-4 lg:space-x-5">
+        <div className="flex ml-14 justify-left tablet:ml-0 tablet:justify-center md:ml-3 md:justify-center space-x-2 md:space-x-4 lg:space-x-5">
           <IoPlaySkipBack
             onClick={prevSong}
             className="cursor-pointer text-2xl text-gray-400 hover:text-white"
@@ -122,7 +120,7 @@ const Footer = () => {
           />
         </div>
         <div className="flex items-center justify-between w-60 sm:w-72 md:w-80 lg:w-full">
-          <div className="md:-mr-6 invisible md:visible md:text-base">
+          <div className="md:-mr-7 md:mt-1 invisible md:visible md:text-base">
             {fmtMSS(currentTime)}
           </div>
           <Slider
@@ -136,9 +134,9 @@ const Footer = () => {
               opacity: 1,
             }}
             railStyle={{ background: "rgb(94, 93, 93)" }}
-            className="ml-9 md:ml-9 md:mr-2"
+            className="-ml-2 mt-2 tablet:ml-1 md:ml-9"
           />
-          <div className="invisible md:visible md:text-base">{fmtMSS(dur)}</div>
+          <div className="invisible md:mt-1 md:ml-1 md:visible md:text-base">{fmtMSS(dur)}</div>
         </div>
       </div>
 
@@ -147,8 +145,8 @@ const Footer = () => {
           onClick={toggleRandom}
           className={
             random
-              ? "text-xl mr-3 cursor-pointer text-green-500 hover:text-green-400 "
-              : "text-xl mr-3 cursor-pointer text-gray-400 hover:text-white"
+              ? "text-xl mr-2 cursor-pointer text-green-500 hover:text-green-400 "
+              : "text-xl mr-2 cursor-pointer text-gray-400 hover:text-white"
           }
         />
         <div
@@ -156,7 +154,7 @@ const Footer = () => {
           onClick={() => {
             setIsVolumeOpen(!isVolumeOpen);
           }}
-          className="relative flex items-center h-full"
+          className="relative hidden md:flex items-center h-full"
         >
           {isVolumeOpen && (
             <div className="flex absolute -top-6 left-2 -translate-x-1/2 -translate-y-1/2 shadow-lg w-8 h-32 rounded-2xl overflow-hidden bg-neutral-400 py-4 justify-center">

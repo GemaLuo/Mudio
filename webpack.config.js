@@ -16,7 +16,7 @@ module.exports = {
     new webpack.ProgressPlugin(),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
-      title: "Mudio",
+      title: "MUDIO",
     }),
   ],
   output: {

@@ -2,7 +2,13 @@ import React, { useEffect, useState } from "react";
 import { IoCloseOutline } from "react-icons/io5";
 import { CgMusic } from "react-icons/cg";
 import { HiOutlinePencil } from "react-icons/hi";
-import { addDoc, collection, doc, orderBy, serverTimestamp } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  orderBy,
+  serverTimestamp,
+} from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { storage, db } from "../../firebase";
 import { UserAuth } from "../../context/AuthContext";
@@ -62,22 +68,24 @@ const CreatePlaylistModal = ({ open, onClose }) => {
     file && uploadFile();
   }, [file]);
 
-  // console.log("form", form);
-
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const optionsList = Songs.map((items) => {
-    return { label: items.songName.toString(), value: items.id, imgURL: items.imgSrc, song: items.song, songDuration: items.songDuration };
+    return {
+      label: items.songName.toString(),
+      value: items.id,
+      imgURL: items.imgSrc,
+      song: items.song,
+      songDuration: items.songDuration,
+    };
   });
   const [selectedOptions, setSelectedOptions] = useState([]);
   const handleOptions = (e) => {
     setSelectedOptions(e);
     setForm({ ...form, options: e });
   };
-  // console.log(selectedOptions);
-  // console.log([options])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -88,14 +96,14 @@ const CreatePlaylistModal = ({ open, onClose }) => {
           timestamp: serverTimestamp(),
           uid: res.user.uid,
         });
-        orderBy('date', 'desc')
+        orderBy("date", "desc");
       } catch (err) {
         console.log(err);
       }
     }
     alert("新增成功！");
     onClose();
-    e.reset();
+    e.target.reset();
   };
   if (!open) return null;
 
@@ -108,7 +116,7 @@ const CreatePlaylistModal = ({ open, onClose }) => {
         onClick={(e) => {
           e.stopPropagation();
         }}
-        className="bg-[#282828] shadow-2xl py-4 px-6 rounded"
+        className="bg-[#282828] w-[90%] modal:w-auto shadow-2xl py-4 px-6 rounded"
       >
         <div className="flex justify-between mb-2">
           <p className="text-xl font-semibold">建立播放清單</p>
@@ -118,7 +126,7 @@ const CreatePlaylistModal = ({ open, onClose }) => {
           />
         </div>
         <form onSubmit={handleSubmit}>
-          <div className="flex pt-2 pb-4">
+          <div className="flex items-center pt-2 pb-4">
             <div>
               <input
                 onChange={(e) => setFile(e.target.files[0])}
@@ -126,30 +134,30 @@ const CreatePlaylistModal = ({ open, onClose }) => {
                 type="file"
                 id="file"
               />
-              <label htmlFor="file" className="flex text-center items-center">
-                <div className="cursor-pointer text-[#7f7f7f] shadow-2xl shadow-black p-16 w-48 h-48 border border-neutral-700 bg-[#282828] rounded-md group hover:bg-zinc-900 ">
-                  <CgMusic className="w-16 h-16 group-hover:invisible" />
-                  <HiOutlinePencil className="w-14 h-14 -mt-16 invisible group-hover:visible group-hover:text-white" />
-                  <p className="text-center text-[15px] mt-1 invisible group-hover:visible group-hover:text-white">
+              <label htmlFor="file" className="text-center">
+                <div className="cursor-pointer text-[#7f7f7f] m-auto shadow-2xl shadow-black modal:p-16 p-10 w-32 h-32 modal:w-48 modal:h-48 border border-neutral-700 bg-[#282828] rounded-md group hover:bg-zinc-900 ">
+                  <CgMusic className="w-12 h-12 modal:w-16 modal:h-16  group-hover:invisible" />
+                  <HiOutlinePencil className="w-12 h-12 modal:w-14 modal:h-14 -mt-[44px] modal:-mt-16 invisible group-hover:visible group-hover:text-white" />
+                  <p className="hidden modal:flex text-center text-[15px] mt-1 invisible group-hover:visible group-hover:text-white">
                     選擇相片
                   </p>
                 </div>
               </label>
             </div>
-            <div className="pl-4 pt-2 w-64">
-              <div className="pb-5">
+            <div className="pl-3 w-[55%] modal:pl-4 pt-2 modal:w-64">
+              <div className="mb-3 modal:mb-5">
                 <input
                   onChange={handleChange}
                   value={title}
                   name="title"
                   type="text"
                   maxLength="50"
-                  className="tracking-wider w-full font-light focus:outline-[#757575] placeholder-[#a9a9a9] border-neutral-700 bg-[#3e3d3d] py-3 px-4 border rounded-md appearance-none leading-tight focus:outline-none focus:shadow-outline"
+                  className="tracking-wider w-full font-light focus:outline-[#757575] placeholder-[#a9a9a9] border-neutral-700 bg-[#3e3d3d] py-2 px-3 modal:py-3 modal:px-4 border rounded-md appearance-none leading-tight focus:outline-none focus:shadow-outline"
                   placeholder="播放清單標題"
                   required
                 />
               </div>
-              <div className="w-full pb-3">
+              <div className="w-full relative mb-3 modal:mb-5">
                 <MultiSelect
                   overrideStrings={{
                     allItemsAreSelected: "已選擇所有選項",
@@ -165,17 +173,23 @@ const CreatePlaylistModal = ({ open, onClose }) => {
                   className="dark"
                   options={optionsList}
                   value={selectedOptions}
-                  onChange={(e)=> handleOptions(e)}
+                  onChange={(e) => handleOptions(e)}
                   labelledBy="Select"
                 />
+                <style>{`.dropdown-content{
+                  margin-top: -110px;
+                  height: 310px;
+                  overflow: hidden;
+                  margin: round(100); 
+                }`}</style>
               </div>
               <div>
-                <textarea
+                <input
                   onChange={handleChange}
                   value={description}
                   name="description"
                   maxLength="200"
-                  className="w-full resize-none focus:outline-[#757575] placeholder-[#a9a9a9] h-[46px] tracking-wider border-neutral-700 bg-[#3e3d3d] border mt-2 py-3 px-4 shadow-md rounded-md appearance-none leading-tight focus:outline-none focus:shadow-outline"
+                  className="w-full resize-none focus:outline-[#757575] placeholder-[#a9a9a9] tracking-wider border-neutral-700 bg-[#3e3d3d] border py-2 px-3 modal:py-3 modal:px-4 shadow-md rounded-md appearance-none leading-tight focus:outline-none focus:shadow-outline"
                   placeholder="新增說明（選填）"
                 />
               </div>
@@ -185,7 +199,7 @@ const CreatePlaylistModal = ({ open, onClose }) => {
             <button
               type="submit"
               disabled={progress !== null && progress < 100}
-              className="disabled:opacity-25 text-lg font-medium border-zinc-700 bg-zinc-800 hover:bg-zinc-900 text-white px-52 py-2 mb-2 border rounded-full"
+              className="w-full disabled:opacity-25 text-lg font-medium border-zinc-700 bg-zinc-800 hover:bg-zinc-900 text-white px-20 modal:px-52 py-[2px] modal:py-2 mb-2 border rounded-full"
             >
               新 增
             </button>

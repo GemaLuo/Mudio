@@ -39,9 +39,9 @@ const Artist = () => {
   }, []);
 
   return (
-    <div className="w-full overflow-auto">
+    <div className="w-full h-full overflow-y-auto">
       <div
-        className="relative opacity-70 bg-local justify-center overflow-auto h-80 bg-center bg-no-repeat bg-cover"
+        className="relative opacity-70 bg-local justify-center h-80 bg-center bg-no-repeat bg-cover"
         style={{ backgroundImage: `url(${heifetz})` }}
       ></div>
       <div className="relative flex items-center ml-9 -top-40">
@@ -55,7 +55,7 @@ const Artist = () => {
       <div className="mx-4 -mt-16">
         <p className="mb-4 pl-2 text-2xl font-bold">熱門</p>
 
-        <table className="w-5/6 ml-2">
+        <table className="w-6/7 sm:w-[90%] ml-2">
           { randomSongs.map((song, index) => (
               <tbody
                 key={index}
@@ -63,9 +63,9 @@ const Artist = () => {
                 className={currentSong === song?.id ? "text-green-500" : ""}
               >
                 <tr className="hover:bg-zinc-700 group cursor-pointer">
-                  <td className="rounded-l-md">
+                  <td className="rounded-l-2xl">
                     <div className="flex items-center md:w-3/4">
-                      <p className="ml-2 py-4 md:ml-4 md:mr-4 group-hover:invisible flex">
+                      <p className="ml-2 py-4 pl-1 md:ml-4 md:mr-4 group-hover:invisible flex">
                         {currentSong === song?.id ? (
                           <IoStatsChart className="-ml-1 mt-1 -mr-1" />
                         ) : (
@@ -79,12 +79,12 @@ const Artist = () => {
                           )}
                         </span>
                       </p>
-                      <p className="ml-4 line-clamp-1 font-medium">
+                      <p className="ml-4 px-1 line-clamp-1 font-medium">
                         {song?.songName}
                       </p>
                     </div>
                   </td>
-                  <td className="rounded-r-md pr-4 lg:pr-0 text-neutral-400">
+                  <td className="rounded-r-2xl pr-4 lg:pr-0 text-neutral-400">
                     {song?.songDuration}
                   </td>
                 </tr>
@@ -97,7 +97,7 @@ const Artist = () => {
         </div>
       </div>
 
-      <div className="px-6 mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
+      <div className="px-6 mb-20 tablet:mb-12 grid grid-cols-1 gap-4 tablet:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
         <Link to="/album-viuxtemps">
           <div className="p-4 h-80 cursor-pointer rounded-lg bg-zinc-900 hover:bg-zinc-700 transition ease-in-out duration-300 relative group">
             <img

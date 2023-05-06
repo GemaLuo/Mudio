@@ -5,19 +5,18 @@ import { BiSearch } from "react-icons/bi";
 import { VscLibrary } from "react-icons/vsc";
 import { CgClose } from "react-icons/cg";
 import { BsPlusSquareFill } from "react-icons/bs";
-import { FaHeart } from "react-icons/fa";
 
 const Sidebar = ({ openSidebar, setOpenSidebar, setOpenModal }) => {
   return (
     <div
       className={`z-50 h-full w-[15rem] max-w-[15rem] p-5 bg-black text-gray-400 group ${
         !openSidebar && "-translate-x-[15rem]"
-      } transition ease-in-out duration-500 fixed left-0 top-2 lg:static`}
+      } transition ease-in-out duration-500 fixed left-0 lg:static`}
     >
       <div className="flex items-center justify-between">
         <Link to={"/"}>
-          <div className="font-[Poppins] font-semibold text-5xl text-[#1DB954]">
-            Mudio
+          <div className="font-mudio text-[#97c291] font-bold text-[40px]">
+            MUDIO
           </div>
         </Link>
         <CgClose
@@ -45,12 +44,6 @@ const Sidebar = ({ openSidebar, setOpenSidebar, setOpenModal }) => {
             <h2 className="font-[700] text-md font-sans ml-4">你的音樂庫</h2>
           </div>
         </Link>
-        {/* <Link to={"/favorite"}>
-          <div className="flex items-center mt-4 text-neutral-400 hover:text-white">
-            <FaHeart className="text-2xl bg-gradient-to-br rounded-sm from-indigo-700 via-indigo-500 to-indigo-200 p-1" />
-            <h2 className="font-[700] text-md font-sans ml-4">已按讚的歌曲</h2>
-          </div>
-        </Link> */}
         <div>
           <button
             className="cursor-pointer flex items-center mt-4 text-neutral-400 hover:text-white"

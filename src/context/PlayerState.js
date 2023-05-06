@@ -8,10 +8,9 @@ const PlayerState = (props) => {
   const initialState = {
     currentSong: 0,
     songslist: Songs,
-
     random: false,
     playing: true,
-    audio: null
+    audio: null,
   };
   const [state, dispatch] = useReducer(PlayerReducer, initialState);
 
@@ -40,9 +39,6 @@ const PlayerState = (props) => {
 
   //Next song
   const nextSong = () => {
-    // if (state.repeat){
-    //   return SetCurrent(state.currentSong)
-    // }
     if (state.random) {
       return SetCurrent(~~(Math.random() * state.songslist.length));
     }
@@ -53,10 +49,7 @@ const PlayerState = (props) => {
     }
   };
 
-  //Repeat and Random
-  // const toggleRepeat = (id) =>
-  //   dispatch({ type: "TOGGLE_REPEAT", data: state.repeat ? false : true });
-
+  //Random
   const toggleRandom = (id) =>
     dispatch({ type: "TOGGLE_RANDOM", data: state.random ? false : true });
 
@@ -74,7 +67,6 @@ const PlayerState = (props) => {
       value={{
         currentSong: state.currentSong,
         songslist: state.songslist,
-
         random: state.random,
         playing: state.playing,
         audio: state.audio,

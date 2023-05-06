@@ -9,25 +9,25 @@ const Search = () => {
   const [search, setSearch] = useState("");
   // console.log(search);
   return (
-    <div className="mt-2 ml-8">
-      <div className="flex items-center ml-4">
+    <div className="mt-[7px] pl-8 mb-10">
+      <div className="flex items-center ml-4 mb-2 lg:mb-4">
         <BiSearch className="text-2xl z-10 text-black -mr-9" />
         <input
           onChange={(e) => setSearch(e.target.value)}
           placeholder="想聽什麼？"
-          className="focus:border-neutral-500 border bg-white text-black outline-none pl-11 py-2 pr-4 rounded-full md:w-1/4"
+          className="focus:border-neutral-500 border bg-white text-black outline-none pl-11 py-2 pr-4 rounded-full md:w-2/4"
         />
       </div>
-      <div className="mt-2 mb-14 md:mt-4 relative top-16 md:top-10 md:left-0 md:w-11/12">
+      <div className="mb-24 relative top-12 md:top-10 md:left-0 w-9/10 md:w-11/12">
         {search === "" || search === null ? (
           <div>
             <img
-              className="lg:w-[60%] lg:h-[60%]"
+              className="w-[75%] h-[75%] tablet:w-[45%] tablet:h-[45%] lg:w-[60%] lg:h-[60%] -mt-7 tablet:mx-0 md:-mt-6"
               src="https://firebasestorage.googleapis.com/v0/b/mudio-enjoy-music.appspot.com/o/images%2Fundraw_house_searching_re_stk8.svg?alt=media&token=85c1448c-768b-4a80-9fb2-fadbf44c5508"
             />
           </div>
         ) : (
-          <table className="w-[90%] md:w-full -mt-10">
+          <table className="w-[95%] md:w-full -mt-10">
             {Songs.filter((item) => {
               return search.toLowerCase() === ""
                 ? item
@@ -38,50 +38,15 @@ const Search = () => {
                 onClick={() => SetCurrent(song?.id)}
                 className={currentSong === song?.id ? "text-green-500" : ""}
               >
-                <tr className="hover:bg-zinc-600 group cursor-pointer">
-                <td className="rounded-l-md">
+                <tr className="hover:bg-zinc-600  group cursor-pointer">
+                  <td className="rounded-l-2xl">
                     <div className="flex items-center md:w-3/4">
-                      <p className="ml-2 py-3 md:ml-4 md:mr-4 group-hover:invisible flex">
-                        {currentSong === song?.id ? (
-                          <IoStatsChart className="mt-3 mx-4" />
-                        ) : (
-                          <img className="w-12" src={song?.imgSrc} />
-                        )}
-                        <span className="text-white py-3 flex justify-start text-2xl invisible group-hover:visible">
-                          {playing && currentSong === song?.id ? (
-                            <BsPauseFill className="-ml-9 mr-[5px]" />
-                          ) : (
-                            <BsPlayFill className="-ml-9"/>
-                          )}
-                        </span>
-                      </p>
-                      <p className="ml-4 line-clamp-1 font-medium">
+                      <p className="ml-2 my-2 px-1 py-[6px] tablet:ml-4 line-clamp-1 font-medium">
                         {song?.songName}
                       </p>
                     </div>
                   </td>
-                  {/* <td className="rounded-l-md">
-                    <div className="flex items-center md:w-3/4">
-                      <p className="ml-2 py-4 md:ml-4 md:mr-4 group-hover:invisible flex">
-                        {currentSong === song?.id ? (
-                          <IoStatsChart className="mt-1 ml-2" />
-                        ) : (
-                          <img className="w-10" src={song?.imgSrc} />
-                        )}
-                        <span className="text-white -ml-4 md:-ml-7 md:mt-1 text-2xl invisible group-hover:visible">
-                          {playing && currentSong === song?.id ? (
-                            <BsPauseFill />
-                          ) : (
-                            <BsPlayFill />
-                          )}
-                        </span>
-                      </p>
-                      <p className="ml-6 line-clamp-1 font-medium">
-                        {song?.songName}
-                      </p>
-                    </div>
-                  </td> */}
-                  <td className="rounded-r-md pr-4 text-center lg:pr-0">
+                  <td className="rounded-r-2xl pr-2 text-center lg:pr-1">
                     {song?.songDuration}
                   </td>
                 </tr>
