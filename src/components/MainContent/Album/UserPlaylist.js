@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { BsPlayFill, BsPauseFill } from "react-icons/bs";
-import { HiOutlineClock } from "react-icons/hi";
 import { IoStatsChart } from "react-icons/io5";
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "../../../firebase";
@@ -51,7 +50,7 @@ const UserPlaylist = () => {
           </p>
           <p className="text-sm font-medium my-2">
             播放清單・{playlist.timestamp}
-            <span className="invisible md:visible">{playlist.description}</span>
+            <span className="mt-1 flex flex-col invisible md:visible">{playlist.description}</span>
           </p>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import { BsPlayFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { UserAuth } from "../../context/AuthContext";
 
 const Home = () => {
   const img1 =
@@ -11,10 +12,10 @@ const Home = () => {
 
   const img4 =
     "https://firebasestorage.googleapis.com/v0/b/mudio-enjoy-music.appspot.com/o/images%2FKorngold.png?alt=media&token=4046692d-514a-4ecd-a00f-faf89d3bb74c";
-
+  const {user}=UserAuth();
   return (
     <div className="scrollbar pl-4 pr-2">
-      <h1 className="mt-2 mb-4 ml-6 text-xl lg:text-2xl font-bold">早安</h1>
+      <h1 className="mt-2 mb-4 ml-6 text-xl lg:text-2xl font-bold">Hello, {user.displayName}!</h1>
       <div className=" grid gap-2 md:gap-4 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
         <div className="h-20 lg:h-28 ml-6 bg-zinc-900 hover:bg-zinc-800 overflow-hidden rounded-lg flex items-center justify-between group">
           <Link to="album-viuxtemps">
@@ -26,9 +27,6 @@ const Home = () => {
               </p>
             </div>
           </Link>
-          <div className="cursor-pointer hover:scale-110 bg-green-500 w-14 h-14 rounded-full justify-center items-center mr-4 shadow-md opacity-0 transition duration-300 ease-in-out group-hover:opacity-100 hidden lg:flex focus:ring-4 transform active:scale-90 active:bg-green-600">
-            <BsPlayFill className="text-4xl text-black" />
-          </div>
         </div>
 
         <div className="h-20 lg:h-28 ml-6 bg-zinc-900 hover:bg-zinc-800 overflow-hidden rounded-lg flex items-center justify-between group">
@@ -41,9 +39,6 @@ const Home = () => {
               </h1>
             </div>
           </Link>
-          <div className="cursor-pointer hover:scale-110 bg-green-500 w-14 h-14 rounded-full justify-center items-center mr-4 shadow-md opacity-0 transition duration-300 ease-in-out group-hover:opacity-100 hidden lg:flex focus:ring-4 transform active:scale-90 active:bg-green-600">
-            <BsPlayFill className="text-4xl text-black" />
-          </div>
         </div>
 
         <div className="h-20 lg:h-28 ml-6 bg-zinc-900 hover:bg-zinc-800 overflow-hidden rounded-lg flex items-center justify-between group">
@@ -56,9 +51,6 @@ const Home = () => {
               </h1>
             </div>
           </Link>
-          <div className="cursor-pointer hover:scale-110 bg-green-500 w-14 h-14 rounded-full justify-center items-center mr-4 shadow-md opacity-0 transition duration-300 ease-in-out group-hover:opacity-100 hidden lg:flex focus:ring-4 transform active:scale-90 active:bg-green-600">
-            <BsPlayFill className="text-4xl text-black" />
-          </div>
         </div>
       </div>
       <h1 className="mt-8 mb-4 ml-6 text-lg lg:text-2xl font-bold">
@@ -142,10 +134,6 @@ const Home = () => {
             <div className="mt-2 lg:mt-5">
               <h1 className="font-bold truncate ...">Jascha Heifetz</h1>
               <p className="text-zinc-500 mt-2">藝人</p>
-            </div>
-
-            <div className="absolute right-3 bottom-28 z-20 cursor-pointer hover:scale-110 bg-green-500 w-12 h-12 rounded-full flex justify-center items-center mr-4 shadow-md transition duration-300 ease-in-out lg:flex group-hover:opacity-100 opacity-0 translate-y-4 group-hover:translate-y-0 focus:ring-4 transform active:scale-90 active:bg-green-600">
-              <BsPlayFill className="text-4xl text-black " />
             </div>
           </div>
         </Link>

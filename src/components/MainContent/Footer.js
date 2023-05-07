@@ -37,7 +37,7 @@ const Footer = () => {
       nextSong();
     });
     audio.current.addEventListener("canplay", () => {
-      audio.current?.play();
+      audio.current.play();
     });
   }, []);
 
