@@ -50,7 +50,9 @@ const UserPlaylist = () => {
           </p>
           <p className="text-sm font-medium my-2">
             播放清單・{playlist.timestamp}
-            <span className="mt-1 flex flex-col invisible md:visible">{playlist.description}</span>
+            <span className="mt-1 flex flex-col invisible md:visible">
+              {playlist.description}
+            </span>
           </p>
         </div>
       </div>

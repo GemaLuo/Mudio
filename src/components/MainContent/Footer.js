@@ -55,8 +55,10 @@ const Footer = () => {
 
   const [dur, setDur] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
-  const toggleAudio = () =>
+
+  const toggleAudio = () => {
     audio.current.paused ? audio.current.play() : audio.current.pause();
+  };
 
   const handleProgress = (value) => {
     let compute = (value * dur) / 100;
@@ -136,7 +138,9 @@ const Footer = () => {
             railStyle={{ background: "rgb(94, 93, 93)" }}
             className="-ml-2 mt-2 tablet:ml-1 md:ml-9"
           />
-          <div className="invisible md:mt-1 md:ml-1 md:visible md:text-base">{fmtMSS(dur)}</div>
+          <div className="invisible md:mt-1 md:ml-1 md:visible md:text-base">
+            {fmtMSS(dur)}
+          </div>
         </div>
       </div>
 

@@ -42,7 +42,6 @@ const Signup = () => {
               photoURL: downloadURL,
             });
           } catch (error) {
-            
             setError(true);
           }
         });
@@ -50,7 +49,6 @@ const Signup = () => {
       navigate("/signin");
     } catch (error) {
       setError(true);
-      
     }
   };
 

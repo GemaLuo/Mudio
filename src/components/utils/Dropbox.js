@@ -20,7 +20,12 @@ const Dropbox = () => {
         <p className="px-1 py-1 hover:bg-zinc-600 rounded-lg">個人檔案</p>
       </Link>
       <p>
-        <button onClick={handleLogout} className="px-1 py-1 w-32 text-left hover:bg-zinc-600 rounded-lg">登出</button>
+        <button
+          onClick={handleLogout}
+          className="px-1 py-1 w-32 text-left hover:bg-zinc-600 rounded-lg"
+        >
+          登出
+        </button>
       </p>
     </div>
   );

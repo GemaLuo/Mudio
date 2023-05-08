@@ -102,9 +102,11 @@ const CreatePlaylistModal = ({ open, onClose }) => {
       }
     }
     alert("新增成功！");
-    e.target.reset();
     onClose();
-    
+    setForm(initialState);
+    setFile(null);
+    setProgress(null);
+    setSelectedOptions([]);
   };
   if (!open) return null;
 

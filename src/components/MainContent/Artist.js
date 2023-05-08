@@ -56,40 +56,40 @@ const Artist = () => {
         <p className="mb-4 pl-2 text-2xl font-bold">熱門</p>
 
         <table className="w-6/7 sm:w-[90%] ml-2">
-          { randomSongs.map((song, index) => (
-              <tbody
-                key={index}
-                onClick={() => SetCurrent(song?.id)}
-                className={currentSong === song?.id ? "text-green-500" : ""}
-              >
-                <tr className="hover:bg-zinc-700 group cursor-pointer">
-                  <td className="rounded-l-2xl">
-                    <div className="flex items-center md:w-3/4">
-                      <p className="ml-2 py-4 pl-1 md:ml-4 md:mr-4 group-hover:invisible flex">
-                        {currentSong === song?.id ? (
-                          <IoStatsChart className="-ml-1 mt-1 -mr-1" />
+          {randomSongs.map((song, index) => (
+            <tbody
+              key={index}
+              onClick={() => SetCurrent(song?.id)}
+              className={currentSong === song?.id ? "text-green-500" : ""}
+            >
+              <tr className="hover:bg-zinc-700 group cursor-pointer">
+                <td className="rounded-l-2xl">
+                  <div className="flex items-center md:w-3/4">
+                    <p className="ml-2 py-4 pl-1 md:ml-4 md:mr-4 group-hover:invisible flex">
+                      {currentSong === song?.id ? (
+                        <IoStatsChart className="-ml-1 mt-1 -mr-1" />
+                      ) : (
+                        `${index + 1}`
+                      )}
+                      <span className="text-white -ml-4 text-2xl invisible group-hover:visible">
+                        {playing && currentSong === song?.id ? (
+                          <BsPauseFill />
                         ) : (
-                          `${index + 1}`
+                          <BsPlayFill />
                         )}
-                        <span className="text-white -ml-4 text-2xl invisible group-hover:visible">
-                          {playing && currentSong === song?.id ? (
-                            <BsPauseFill />
-                          ) : (
-                            <BsPlayFill />
-                          )}
-                        </span>
-                      </p>
-                      <p className="ml-4 px-1 line-clamp-1 font-medium">
-                        {song?.songName}
-                      </p>
-                    </div>
-                  </td>
-                  <td className="rounded-r-2xl pr-4 lg:pr-0 text-neutral-400">
-                    {song?.songDuration}
-                  </td>
-                </tr>
-              </tbody>
-            ))}
+                      </span>
+                    </p>
+                    <p className="ml-4 px-1 line-clamp-1 font-medium">
+                      {song?.songName}
+                    </p>
+                  </div>
+                </td>
+                <td className="rounded-r-2xl pr-4 lg:pr-0 text-neutral-400">
+                  {song?.songDuration}
+                </td>
+              </tr>
+            </tbody>
+          ))}
         </table>
 
         <div className="mt-4">

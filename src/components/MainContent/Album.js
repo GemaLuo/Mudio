@@ -4,16 +4,19 @@ import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { db, getCurrentUserId } from "../../firebase";
 
 const Album = () => {
-
   const [playlist, setPlaylist] = useState([]);
   useEffect(() => {
     const unsub = onSnapshot(
-      query(collection(db, "Playlists"), where('uid', '==', getCurrentUserId())), 
+      query(
+        collection(db, "Playlists"),
+        where("uid", "==", getCurrentUserId())
+      ),
       (snapshot) => {
         let list = [];
         snapshot.docs.forEach((doc) => {
           list.push({ id: doc.id, ...doc.data() });
         });
+        list.sort((a, b) =>b.timestamp - a.timestamp);
         setPlaylist(list);
       },
       (error) => {
