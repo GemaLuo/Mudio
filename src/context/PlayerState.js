@@ -9,8 +9,7 @@ const PlayerState = (props) => {
     currentSong: 0,
     songslist: Songs,
     random: false,
-    playing: true,
-    audio: null,
+    playing: false,
   };
   const [state, dispatch] = useReducer(PlayerReducer, initialState);
 

@@ -16,11 +16,6 @@ let PlayerReducer = (state, action) => {
         ...state,
         random: action.data,
       };
-    case "TOGGLE_REPEAT":
-      return {
-        ...state,
-        repeat: action.data,
-      };
     case "TOGGLE_PLAYING":
       return {
         ...state,

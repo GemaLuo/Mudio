@@ -3,7 +3,6 @@ import { RxShuffle } from "react-icons/rx";
 import { IoPlaySkipBack } from "react-icons/io5";
 import { IoPlaySkipForward } from "react-icons/io5";
 import { HiPlay, HiPause } from "react-icons/hi";
-// import { TbRepeat, TbRepeatOnce } from "react-icons/tb";
 import { SlVolume2, SlVolumeOff } from "react-icons/sl";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
@@ -29,16 +28,17 @@ const Footer = () => {
       document.removeEventListener("mousedown", handler);
     };
   }, []);
+  
   useEffect(() => {
     audio.current.addEventListener("volumechange", (e) => {
       setVolume(+e.target.volume);
     });
-    audio.current.addEventListener("ended", (e) => {
+    audio.current.addEventListener("ended", () => {
       nextSong();
     });
-    audio.current.addEventListener("canplay", () => {
-      audio.current.play();
-    });
+    // audio.current.addEventListener("canplay", () => {
+    //   audio.current.play();
+    // });
   }, []);
 
   const {
@@ -57,9 +57,18 @@ const Footer = () => {
   const [currentTime, setCurrentTime] = useState(0);
 
   const toggleAudio = () => {
-    audio.current.paused ? audio.current.play() : audio.current.pause();
+    if(audio.current.paused){
+      audio.current.play();
+    }else{
+      audio.current.pause();
+    }
   };
-
+  useEffect(()=>{
+    if(playing){
+      toggleAudio();
+    }
+  },[currentSong])
+  
   const handleProgress = (value) => {
     let compute = (value * dur) / 100;
     setCurrentTime(compute);
