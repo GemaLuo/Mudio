@@ -28,7 +28,7 @@ const Footer = () => {
       document.removeEventListener("mousedown", handler);
     };
   }, []);
-  
+
   useEffect(() => {
     audio.current.addEventListener("volumechange", (e) => {
       setVolume(+e.target.volume);
@@ -36,9 +36,6 @@ const Footer = () => {
     audio.current.addEventListener("ended", () => {
       nextSong();
     });
-    // audio.current.addEventListener("canplay", () => {
-    //   audio.current.play();
-    // });
   }, []);
 
   const {
@@ -57,18 +54,18 @@ const Footer = () => {
   const [currentTime, setCurrentTime] = useState(0);
 
   const toggleAudio = () => {
-    if(audio.current.paused){
+    if (audio.current.paused) {
       audio.current.play();
-    }else{
+    } else {
       audio.current.pause();
     }
   };
-  useEffect(()=>{
-    if(playing){
+  useEffect(() => {
+    if (playing) {
       toggleAudio();
     }
-  },[currentSong])
-  
+  }, [currentSong]);
+
   const handleProgress = (value) => {
     let compute = (value * dur) / 100;
     setCurrentTime(compute);

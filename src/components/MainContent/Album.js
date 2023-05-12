@@ -16,7 +16,7 @@ const Album = () => {
         snapshot.docs.forEach((doc) => {
           list.push({ id: doc.id, ...doc.data() });
         });
-        list.sort((a, b) =>b.timestamp - a.timestamp);
+        list.sort((a, b) => b.timestamp - a.timestamp);
         setPlaylist(list);
       },
       (error) => {
