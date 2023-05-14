@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { MdArrowBackIos } from "react-icons/md";
 import { MdArrowForwardIos } from "react-icons/md";
-import { BiUserCircle } from "react-icons/bi";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import Dropbox from "../utils/Dropbox";

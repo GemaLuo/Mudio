@@ -56,7 +56,12 @@ const Signup = () => {
     <section className="bg-[#8b8f86] w-full h-screen flex">
       <div className="grid grid-cols-1 sm:grid-cols-2 m-auto h-[450px] shadow-lg shadow-gray-600 rounded-2xl ">
         {/*左邊*/}
-        <div className="w-full h-[450px] hidden sm:block">
+        <div className="relative w-full h-[450px] hidden sm:block">
+          <div className="absolute top-20 left-14">
+            <h6 className="text-center font-medium font-mudio text-[28px] text-[#63805f]">
+              Music is life itself.
+            </h6>
+          </div>
           <img
             className="w-full h-full rounded-l-xl"
             src={earphone}
@@ -67,7 +72,7 @@ const Signup = () => {
         {/* 右邊 */}
         <div className="p-6 tablet:p-8 flex flex-col rounded-xl sm:rounded-l-none sm:rounded-r-xl bg-[#e2e7dc] justify-around">
           <form onSubmit={handleSubmit} className="flex flex-col gap-y-3">
-            <h1 className="font-mudio text-center text-[#97c291] text-4xl font-semibold">
+            <h1 className="font-mudio text-center text-[#8fb88a] text-4xl font-semibold">
               MUDIO
             </h1>
             <h1 className="text-center text-2xl font-bold">註 冊</h1>
