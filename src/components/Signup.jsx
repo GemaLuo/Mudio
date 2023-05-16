@@ -57,8 +57,8 @@ const Signup = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 m-auto h-[450px] shadow-lg shadow-gray-600 rounded-2xl ">
         {/*左邊*/}
         <div className="relative w-full h-[450px] hidden sm:block">
-          <div className="absolute top-20 left-14">
-            <h6 className="text-center font-medium font-mudio text-[28px] text-[#63805f]">
+          <div className="absolute top-20 left-16">
+            <h6 className="text-center font-medium font-mudio text-[24px] text-[#63805f]">
               Music is life itself.
             </h6>
           </div>

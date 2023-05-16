@@ -29,6 +29,7 @@ const HomePage = () => {
       window.removeEventListener("resize", handleWindowResize);
     };
   }, []);
+
   useEffect(() => {
     if (width < 1024) {
       setOpenSidebar(false);
@@ -36,12 +37,13 @@ const HomePage = () => {
       setOpenSidebar(true);
     }
   }, [width]);
+
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 2500);
+    }, 3500);
   }, []);
 
   return (

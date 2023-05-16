@@ -12,10 +12,13 @@ const Home = () => {
 
   const img4 =
     "https://firebasestorage.googleapis.com/v0/b/mudio-enjoy-music.appspot.com/o/images%2FKorngold.png?alt=media&token=4046692d-514a-4ecd-a00f-faf89d3bb74c";
-  const {user}=UserAuth();
+  const { user } = UserAuth();
+
   return (
     <div className="scrollbar pl-4 pr-2">
-      <h1 className="mt-2 mb-4 ml-6 text-xl lg:text-2xl font-bold">Hello, {user.displayName}!</h1>
+      <h1 className="mt-2 mb-4 ml-6 text-xl lg:text-2xl font-bold">
+        Hello, {user.displayName}!
+      </h1>
       <div className=" grid gap-2 md:gap-4 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
         <div className="h-20 lg:h-28 ml-6 bg-zinc-900 hover:bg-zinc-800 overflow-hidden rounded-lg flex items-center justify-between group">
           <Link to="album-viuxtemps">

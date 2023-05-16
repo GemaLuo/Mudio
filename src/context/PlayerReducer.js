@@ -20,9 +20,9 @@ let PlayerReducer = (state, action) => {
       return {
         ...state,
         playing: action.data,
-      }
+      };
     default:
-      return state
+      return state;
   }
 };
 

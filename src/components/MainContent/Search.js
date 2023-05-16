@@ -5,7 +5,8 @@ import PlayerContext from "../../context/PlayerContext";
 const Search = () => {
   const { currentSong, SetCurrent } = useContext(PlayerContext);
   const [search, setSearch] = useState("");
-  const searchRegex=new RegExp(search, "i");
+  const searchRegex = new RegExp(search, "i");
+
   return (
     <div className="mt-[7px] pl-8 mb-10">
       <div className="flex items-center ml-4 mb-5 lg:mb-8">
@@ -27,9 +28,7 @@ const Search = () => {
         ) : (
           <table className="w-[90%] md:w-full">
             {Songs.filter((item) => {
-              return search === ""
-                ? item
-                : searchRegex.test(item.songName);
+              return search === "" ? item : searchRegex.test(item.songName);
             }).map((song) => (
               <tbody
                 key={song?.id}

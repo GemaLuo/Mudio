@@ -38,8 +38,10 @@ const App = () => {
               <Route path="search" element={<Search />} />
               <Route path="album" element={<Album />} />
               <Route path="artist=heifetz" element={<Artist />} />
-              
-              <Route path="album/user-playlist/:id" element={<UserPlaylist/>} />
+              <Route
+                path="album/user-playlist/:id"
+                element={<UserPlaylist />}
+              />
               <Route path="album-viuxtemps" element={<Viuxtemps />} />
               <Route path="album-Korngold" element={<Korngold />} />
               <Route path="album-Piatigorsky" element={<Piatigorsky />} />

@@ -29,7 +29,7 @@ const Album = () => {
   }, []);
 
   return (
-    <div className="scrollbar px-4 mb-20">
+    <div className="scrollbar px-7 mb-20">
       <h1 className="mt-2 mb-4 ml-3 text-lg lg:text-2xl font-bold">
         你的播放清單
       </h1>

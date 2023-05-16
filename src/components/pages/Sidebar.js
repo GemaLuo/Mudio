@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { HiHome } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import { BiSearch } from "react-icons/bi";
@@ -19,13 +19,13 @@ const Sidebar = ({ openSidebar, setOpenSidebar, setOpenModal }) => {
     };
   }, []);
 
-  const closeSidebar=()=>{
-    if(isSmallScreen){
+  const closeSidebar = () => {
+    if (isSmallScreen) {
       setOpenSidebar(false);
     } else {
       setOpenSidebar(true);
     }
-  }
+  };
 
   return (
     <div

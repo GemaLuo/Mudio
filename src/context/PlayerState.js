@@ -55,9 +55,9 @@ const PlayerState = (props) => {
   //End of song
   const handleEnd = () => {
     if (state.random) {
-      return SetCurrent(~~(Math.random() * state.songslist.length))
+      return SetCurrent(~~(Math.random() * state.songslist.length));
     } else {
-      nextSong()
+      nextSong();
     }
   };
 
