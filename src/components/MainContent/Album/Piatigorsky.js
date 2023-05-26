@@ -4,7 +4,6 @@ import { HiOutlineClock } from "react-icons/hi2";
 import { useContext } from "react";
 import PlayerContext from "../../../context/PlayerContext";
 import { IoStatsChart } from "react-icons/io5";
-import { RiHeart3Line } from "react-icons/ri";
 
 const Piatigorsky = () => {
   const { songslist, currentSong, SetCurrent, playing } =

@@ -38,7 +38,7 @@ const Search = () => {
                 <tr className="hover:bg-zinc-600  group cursor-pointer">
                   <td className="rounded-l-2xl">
                     <div className="flex items-center md:w-3/4">
-                      <p className="ml-2 my-2 px-1 py-[6px] tablet:ml-4 line-clamp-1 font-medium">
+                      <p className="ml-2 my-2 px-1 py-[5px] tablet:ml-4 line-clamp-1 font-medium">
                         {song?.songName}
                       </p>
                     </div>

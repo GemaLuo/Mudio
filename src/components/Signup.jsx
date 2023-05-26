@@ -100,7 +100,7 @@ const Signup = () => {
                 htmlFor="file"
                 className="cursor-pointer flex items-center"
               >
-                <FcAddImage className="w-10 h-10" />
+                <FcAddImage className="w-8 h-8" />
                 <span className="pl-2 tracking-wider text-gray-500">
                   選擇相片
                 </span>
@@ -110,7 +110,7 @@ const Signup = () => {
               註 冊
             </button>
             {error && (
-              <span className="flex justify-center text-red-700 text-base font-semibold">
+              <span className="flex justify-center text-red-700 text-base font-semibold leading-[8px]">
                 註冊失敗，請重新註冊
               </span>
             )}
