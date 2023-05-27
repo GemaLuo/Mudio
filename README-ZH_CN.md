@@ -107,7 +107,7 @@ https://github.com/GemaLuo/Mudio/assets/112456014/6299d4d7-754a-4ab1-8a23-427b5d
 
 <br>
 
-#### 專輯與藝人頁面
+#### :page_with_curl: 專輯與藝人頁面
 
 無論點擊進入專輯或是藝人區塊，都有列出相關資訊與曲目供使用者參考與聆聽。
 
