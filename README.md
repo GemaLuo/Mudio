@@ -107,7 +107,7 @@ https://github.com/GemaLuo/Mudio/assets/112456014/266f2628-50e9-41dd-b91f-1c4197
 
 <br>
 
-### Album and Artist Page
+### :page_with_curl: Album and Artist Page
 
 Whether you click into an album or an artist section, you will find relevant information and tracks listed for users to reference and listen to.
 
