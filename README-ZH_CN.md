@@ -100,7 +100,7 @@ https://github.com/GemaLuo/Mudio/assets/112456014/8e9a441d-8ea7-41da-af31-72da99
 
 #### :bust_in_silhouette: 會員頁
 
-點擊右上角的會員頭貼，選擇個人檔案後，可以從Firestore瀏覽使用者註冊時建立的資料及頭貼。
+點擊右上角的會員頭貼，選擇個人檔案後，從Firestore Database提取使用者註冊時建立的資料及頭貼並渲染在畫面。
 
 
 https://github.com/GemaLuo/Mudio/assets/112456014/6299d4d7-754a-4ab1-8a23-427b5dc6b954
