@@ -31,7 +31,8 @@ MUDIO 需要登入才可建立個人化播放清單，測試帳密如下：
 
 ## 使用技術
 
-![專案使用技術](/images/tool.png)
+![Mudio stack](https://github.com/GemaLuo/Mudio/assets/112456014/e82e2fcb-6fa8-4bb2-9411-5add274a4ac3)
+
 
 ## 功能
 
