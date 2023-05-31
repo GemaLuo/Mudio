@@ -30,8 +30,7 @@ MUDIO requires login to create personalized playlists. The following is the test
 | user@user.com | user123  |
 
 ## Stack
-
-![Stack](/images/tool.png)
+![Mudio stack](https://github.com/GemaLuo/Mudio/assets/112456014/165f70b9-3c5f-416d-b85d-b0005adf3789)
 
 ## Features
 
